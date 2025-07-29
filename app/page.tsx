@@ -1,12 +1,23 @@
-import { createClient } from '@/lib/supabase'
-import ContentRenderer from '@/components/ContentRenderer'
-export default async function Home() {
-  const supabase = createClient()
-  const { data } = await supabase.from('pages').select('title,body').eq('slug', 'home').single()
+import Navbar from "@/components/Navbar"
+import Hero from "@/components/Hero"
+import Footer from "@/components/Footer"
+
+export default function HomePage() {
   return (
-    <section className="max-w-4xl mx-auto px-4 py-12 space-y-6">
-      <h1 className="text-4xl font-bold">{data?.title || 'Selamat Datang di SBTP-FSBI'}</h1>
-      <ContentRenderer html={data?.body || '<p>Belum ada konten.</p>'} />
-    </section>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <Hero />
+      <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-6">
+        <div className="bg-white p-6 rounded-xl shadow">
+          <h3 className="text-lg font-semibold">Untuk tulisan</h3>
+          <p className="text-gray-600 mt-2">Konten deskripsi singkat...</p>
+        </div>
+        <div className="bg-white p-6 rounded-xl shadow">
+          <h3 className="text-lg font-semibold">Untuk tulisan</h3>
+          <p className="text-gray-600 mt-2">Konten tambahan...</p>
+        </div>
+      </main>
+      <Footer />
+    </div>
   )
 }
