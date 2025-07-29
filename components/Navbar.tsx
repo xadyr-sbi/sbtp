@@ -26,7 +26,6 @@ export default function Navbar() {
       } else {
         setTitle("SBTP-FSBI")
         setTagline("Berani, Jujur, Cerdas, Militan")
-        console.error("Supabase error:", error)
       }
     }
     fetchHeader()
