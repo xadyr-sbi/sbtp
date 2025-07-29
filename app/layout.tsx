@@ -1,14 +1,19 @@
-import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-export const metadata = { title: 'SBTP-FSBI', description: 'Berani, Jujur, Cerdas, Militan' }
+import "./globals.css"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+
+const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "SBTP-FSBI",
+  description: "Serikat Buruh Tingkat Perusahaan - FSBI",
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
-      <body className="bg-white text-gray-800">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+    <html lang="en">
+      <body className={`${inter.className} bg-gray-50 text-gray-800`}>
+        {children}
       </body>
     </html>
   )
