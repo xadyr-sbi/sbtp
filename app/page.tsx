@@ -5,12 +5,20 @@ import Footer from "@/components/Footer"
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-white">
+      {/* Header */}
       <Navbar />
-      <main className="flex flex-1 max-w-7xl mx-auto px-4 lg:px-6 py-6 gap-6">
+
+      {/* Konten utama */}
+      <main className="flex flex-1 max-w-7xl mx-auto w-full px-4 lg:px-6 py-6 gap-6">
+        {/* Sidebar kiri */}
         <Sidebar />
+
+        {/* Konten tengah */}
         <MainContent />
       </main>
+
+      {/* Footer */}
       <Footer />
     </div>
   )
