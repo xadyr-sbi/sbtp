@@ -1,22 +1,16 @@
 import Navbar from "@/components/Navbar"
-import Hero from "@/components/Hero"
+import Sidebar from "@/components/Sidebar"
+import MainContent from "@/components/MainContent"
 import Footer from "@/components/Footer"
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Hero />
-      <main className="flex-1 max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h3 className="text-lg font-semibold">Untuk tulisan</h3>
-          <p className="text-gray-600 mt-2">Konten deskripsi singkat...</p>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h3 className="text-lg font-semibold">Untuk tulisan</h3>
-          <p className="text-gray-600 mt-2">Konten tambahan...</p>
-        </div>
-      </main>
+      <div className="flex max-w-7xl mx-auto px-4 py-6 flex-1 space-x-6">
+        <Sidebar />
+        <MainContent />
+      </div>
       <Footer />
     </div>
   )
