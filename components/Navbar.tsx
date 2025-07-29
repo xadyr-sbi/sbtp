@@ -1,24 +1,43 @@
 "use client"
+import { useEffect, useState } from "react"
+import { createClient } from "@supabase/supabase-js"
 import Link from "next/link"
 
-export default function Navbar() {
-  return (
-    <header className="relative">
-      {/* Blok Merah Gradien Hitam */}
-      <div className="h-[120px] bg-gradient-to-b from-red-700 to-black flex flex-col justify-center items-center text-white">
-        {/* Judul & Tagline */}
-        <h1 className="text-3xl font-extrabold tracking-wide">SBTP-FSBI</h1>
-        <p className="italic text-sm mt-1">Berani, Jujur, Cerdas, Militan</p>
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
-        {/* Menu Navigasi */}
+export default function Navbar() {
+  const [title, setTitle] = useState("")
+
+  useEffect(() => {
+    const fetchTitle = async () => {
+      const { data, error } = await supabase
+        .from("pages")
+        .select("title")
+        .eq("slug", "home")
+        .single()
+
+      if (!error && data) setTitle(data.title)
+      else setTitle("SBTP-FSBI")
+    }
+    fetchTitle()
+  }, [])
+
+  return (
+    <header className="w-full">
+      <div className="h-[120px] bg-gradient-to-b from-red-700 to-black flex flex-col items-center justify-center text-white">
+        <h1 className="text-3xl font-extrabold">{title}</h1>
+        <p className="italic mt-1">Berani, Jujur, Cerdas, Militan</p>
         <nav className="mt-3 flex flex-wrap justify-center gap-6 text-sm font-semibold">
-          <Link href="/" className="hover:text-yellow-300 transition">Beranda</Link>
-          <Link href="/berita" className="hover:text-yellow-300 transition">Berita</Link>
-          <Link href="/uu" className="hover:text-yellow-300 transition">UU Ketenagakerjaan</Link>
-          <Link href="/hitung" className="hover:text-yellow-300 transition">Hitung Gaji</Link>
-          <Link href="/serikat" className="hover:text-yellow-300 transition">Serikat Pekerja</Link>
-          <Link href="/diskusi" className="hover:text-yellow-300 transition">Diskusi</Link>
-          <Link href="/tentang" className="hover:text-yellow-300 transition">Tentang</Link>
+          <Link href="/">Beranda</Link>
+          <Link href="/berita">Berita</Link>
+          <Link href="/uu">UU Ketenagakerjaan</Link>
+          <Link href="/hitung">Hitung Gaji</Link>
+          <Link href="/serikat">Serikat Pekerja</Link>
+          <Link href="/diskusi">Diskusi</Link>
+          <Link href="/tentang">Tentang</Link>
         </nav>
       </div>
     </header>
