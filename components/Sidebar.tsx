@@ -1,10 +1,30 @@
 export default function Sidebar() {
-  const boxes = [1, 2, 3, 4]
+  const berita = [
+    "Berita Terkini Serikat Pekerja",
+    "Update UU Ketenagakerjaan",
+    "Diskusi Anggota Terbaru",
+    "Kegiatan SBTP-FSBI"
+  ]
+
   return (
-    <aside className="flex flex-col space-y-4">
-      {boxes.map((b) => (
-        <div key={b} className="w-20 h-20 bg-gray-200 rounded border border-gray-400"></div>
-      ))}
+    <aside className="space-y-4">
+      <div className="bg-white p-4 rounded-xl shadow-sm">
+        <h3 className="font-bold text-lg mb-3">Berita Populer</h3>
+        <ul className="space-y-2 text-sm text-blue-700">
+          {berita.map((item, i) => (
+            <li key={i} className="hover:underline cursor-pointer">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="bg-white p-4 rounded-xl shadow-sm">
+        <h3 className="font-bold text-lg mb-3">Tentang SBTP-FSBI</h3>
+        <p className="text-gray-700 text-sm">
+          SBTP-FSBI adalah serikat buruh tingkat perusahaan yang berafiliasi
+          dengan Federasi Serikat Buruh Independen.
+        </p>
+      </div>
     </aside>
   )
 }
